@@ -1,0 +1,114 @@
+.clear:before,
+.clear:after {
+    content: " ";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+
+.divider {
+  width: 242px;
+  height: 402px;
+  text-align: center;
+  float: left;
+}
+
+.fightbutton {
+  margin-top: 100px;
+  background: transparent;
+  border: none;
+  outline: 0;
+}
+
+.log-box {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 706px;
+  height: 180px;
+  display: block;
+  overflow: hidden;
+  margin-top: 90px;
+  background: transparent url(http://i.imgur.com/DiUyN6r.gif) no-repeat center;
+}
+
+p {
+  margin: 7px 0;
+}
+
+.round-display {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2em;
+  /* WebKit (Safari/Chrome) Only */
+  -webkit-text-stroke: 1px black;
+  
+  /* If we weren't using text-shadow, we'd set a fallback color
+     and use this to set color instead
+    -webkit-text-fill-color: white; */
+  
+  color: white;
+  
+  text-shadow:
+    3px 3px 0 #000,
+    /* Simulated effect for Firefox and Opera
+       and nice enhancement for WebKit */
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px  1px 0 #000,
+    1px  1px 0 #000;
+  
+}
+
+.bigger {
+  font-size: 4em;
+  line-height: .85em;
+}
+
+.explanation-half {
+  height: 220px;
+}
+
+.explanation-image {
+  float: left;
+}
+
+.explanation-text {
+  float: left;
+  font-size: 1.5em;
+}
+
+.log-text {
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: 600;
+  font-size: 1.2em;
+  text-align: center;
+  line-height: .8em;
+  color: #593819;
+  padding-bottom: 21px;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.glove {
+  width: 150px;
+}
+
+.battle-box {
+  margin: 0 auto;
+  min-width: 1230px;
+}
+
+body {
+  background: #bada55 url("http://i.imgur.com/1cKGUIU.gif") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

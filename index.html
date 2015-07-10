@@ -1,0 +1,101 @@
+<!doctype html>
+<html ng-app="bestieBattle">
+  <head>
+    <meta charset="UTF-8">
+    <title>Bestie Battle</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="script.js"></script>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker|Shadows+Into+Light' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  </head>
+  
+ <body ng-controller="battleController">
+<div class="centered">
+    <div class="battle-box clear">
+      <div class="divider">
+        <div ng-show="playerOne.drawitem === 'trentsfightstick'" class='explanation-half'><img src="http://i.imgur.com/e6i8iNZ.png"><br /><p class="round-display explanation-text">Trent's Fightstick-<br /> +25 max attack<br />-10 max defense</p></div>
+        <div ng-show="playerOne.drawitem === 'craigsgreenscreen'" class='explanation-half'><img src="http://i.imgur.com/rzcM2r8.png"><br /><p class="round-display explanation-text">Craig's Greenscreen-<br /> +10 max defense</p></div>
+        <div ng-show="playerOne.drawitem === 'ericsloveforaquaman'" class='explanation-half'><img src="http://i.imgur.com/36W5KTG.png"><br /><p class="round-display explanation-text">Eric's love for Aquaman-<br /> +25 max defense<br />-10 max attack</p></div>
+        <div ng-show="playerOne.drawitem === 'reggiesmechanicalkeyboard'" class='explanation-half'><img src="http://i.imgur.com/UqFGcMB.png"><br /><p class="round-display explanation-text">Reggie's Mechanical Keyboard-<br /> +5 to EVERY attack</p></div>
+        <div ng-show="playerOne.drawitem === 'tjswowauthenticator'" class='explanation-half'><img src="http://i.imgur.com/wkWlpZo.png"><br /><p class="round-display explanation-text">TJ's WoW Authenticator-<br /> +10 max attack</p></div>
+        <div ng-show="playerOne.drawitem === 'alexsgamebreakingbug'" class='explanation-half'><img src="http://i.imgur.com/kbyDdat.png"><br /><p class="round-display explanation-text">Alex's Game breaking bug-<br /> +5 to EVERY attack<br /> +5 EVERY defense<br /> -2 health EVERY round</p></div>
+        <div ng-show="playerOne.drawitem === 'stevesinsulin'" class='explanation-half'><img src="http://i.imgur.com/UoNq3wz.png"><br /><p class="round-display explanation-text">Steve's Insulin-<br /> +25 health</p></div>
+        <div ng-show="playerOne.drawitem === 'zanesemployeediscount'" class='explanation-half'><img src="http://i.imgur.com/QvtdyWN.png"><br /><p class="round-display explanation-text">Zane's Employee discount-<br /> +5 to EVERY defense</p></div>
+        <div ng-show="playerOne.drawitem === 'roundyscomicbookcollection'" class='explanation-half'><img src="http://i.imgur.com/1a2oIKc.png"><br /><p class="round-display explanation-text">Roundy's Comic book collection-<br /> +2 health EVERY round</p></div>
+        <div ng-show="playerOne.drawitem === 'devinsmotorcycle'" class='explanation-half'><img src="http://i.imgur.com/IltAtvq.png"><br /><p class="round-display explanation-text">Devin's Motorcycle-<br /> +50 health<br /> - 3 health EVERY round</p></div>
+      </div>
+      <div class="divider"><span class="round-display bigger">{{ playerOne.name }}</span><canvas id="p1" width="240" height="360"></canvas><br /><span class="round-display bigger">{{ playerOne.health }}</span></div>
+      <div class="divider">
+          <span class="round-display">Round {{ roundCount }}</span><br />
+          <button class="fightbutton" type="button" data-ng-click="start()"><img class='glove' src="http://i.imgur.com/ByPOmDP.gif"/></button>
+          <canvas id="p1item" width="100" height="91"></canvas><canvas id="p2item" width="100" height="91"></canvas>
+          <!--<button type="button" data-ng-click="stopFight()">Pause</button><br />-->
+          <!--<button type="button" data-ng-click="resetFight()">New Fight</button>-->
+      </div>
+      <div class="divider"><span class="round-display bigger">{{ playerTwo.name }}</span><canvas id="p2" width="240" height="360"></canvas><br /><span class="round-display bigger">{{ playerTwo.health }}</span></div>
+      <div class="divider">
+        <div ng-show="playerTwo.drawitem === 'trentsfightstick'" class='explanation-half'><img src="http://i.imgur.com/e6i8iNZ.png"><br /><p class="round-display explanation-text">Trent's Fightstick-<br /> +25 max attack<br />-10 max defense</p></div>
+        <div ng-show="playerTwo.drawitem === 'craigsgreenscreen'" class='explanation-half'><img src="http://i.imgur.com/rzcM2r8.png"><br /><p class="round-display explanation-text">Craig's Greenscreen-<br /> +10 max defense</p></div>
+        <div ng-show="playerTwo.drawitem === 'ericsloveforaquaman'" class='explanation-half'><img src="http://i.imgur.com/36W5KTG.png"><br /><p class="round-display explanation-text">Eric's love for Aquaman-<br /> +25 max defense<br />-10 max attack</p></div>
+        <div ng-show="playerTwo.drawitem === 'reggiesmechanicalkeyboard'" class='explanation-half'><img src="http://i.imgur.com/UqFGcMB.png"><br /><p class="round-display explanation-text">Reggie's Mechanical Keyboard-<br /> +5 to EVERY attack</p></div>
+        <div ng-show="playerTwo.drawitem === 'tjswowauthenticator'" class='explanation-half'><img src="http://i.imgur.com/wkWlpZo.png"><br /><p class="round-display explanation-text">TJ's WoW Authenticator-<br /> +10 max attack</p></div>
+        <div ng-show="playerTwo.drawitem === 'alexsgamebreakingbug'" class='explanation-half'><img src="http://i.imgur.com/kbyDdat.png"><br /><p class="round-display explanation-text">Alex's Game breaking bug-<br /> +5 to EVERY attack<br /> +5 EVERY defense<br /> -2 health EVERY round</p></div>
+        <div ng-show="playerTwo.drawitem === 'stevesinsulin'" class='explanation-half'><img src="http://i.imgur.com/UoNq3wz.png"><br /><p class="round-display explanation-text">Steve's Insulin-<br /> +25 health</p></div>
+        <div ng-show="playerTwo.drawitem === 'zanesemployeediscount'" class='explanation-half'><img src="http://i.imgur.com/QvtdyWN.png"><br /><p class="round-display explanation-text">Zane's Employee discount-<br /> +5 to EVERY defense</p></div>
+        <div ng-show="playerTwo.drawitem === 'roundyscomicbookcollection'" class='explanation-half'><img src="http://i.imgur.com/1a2oIKc.png"><br /><p class="round-display explanation-text">Roundy's Comic book collection-<br /> +2 health EVERY round</p></div>
+        <div ng-show="playerTwo.drawitem === 'devinsmotorcycle'" class='explanation-half'><img src="http://i.imgur.com/IltAtvq.png"><br /><p class="round-display explanation-text">Devin's Motorcycle-<br /> +50 health<br /> - 3 health EVERY round</p></div>
+      </div>
+    </div>
+    
+    <div class="log-box">
+        <p class="log-text" ng-repeat="log in logs track by $index">
+          {{log}}
+        </p>
+    </div>
+    
+    
+      
+
+    <div style="display:none;"><!-- hidden images to grab later -->
+      <img id="trent" src="http://i.imgur.com/i1sLNCP.png" width="480" height="720"/>
+      <img id="craig" src="http://i.imgur.com/TlxP4Ud.png" width="480" height="720"/>
+      <img id="eric" src="http://i.imgur.com/GFI7K8I.png" width="480" height="720"/>
+      <img id="reggie" src="http://i.imgur.com/5wrTTQh.png" width="480" height="720"/>
+      <img id="tj" src="http://i.imgur.com/Cj1Hawr.png" width="480" height="720"/>
+      <img id="alex" src="http://i.imgur.com/cOq7uHM.png" width="480" height="720"/>
+      <img id="steve" src="http://i.imgur.com/hnsVmYI.png" width="480" height="720"/>
+      <img id="zane" src="http://i.imgur.com/ALTS5JM.png" width="480" height="720"/>
+      <img id="roundy" src="http://i.imgur.com/v8n7K1H.png" width="480" height="720"/>
+      <img id="devin" src="http://i.imgur.com/auFQbtZ.png" width="480" height="720"/>
+      
+      <img id="trent2" src="http://i.imgur.com/Psa6O5m.png" width="480" height="720"/>
+      <img id="craig2" src="http://i.imgur.com/wECUoho.png" width="480" height="720"/>
+      <img id="eric2" src="http://i.imgur.com/L02aLuu.png" width="480" height="720"/>
+      <img id="reggie2" src="http://i.imgur.com/dj0Lvxc.png" width="480" height="720"/>
+      <img id="tj2" src="http://i.imgur.com/U7h9Acd.png" width="480" height="720"/>
+      <img id="alex2" src="http://i.imgur.com/66fycxu.png" width="480" height="720"/>
+      <img id="steve2" src="http://i.imgur.com/GZ66c0e.png" width="480" height="720"/>
+      <img id="zane2" src="http://i.imgur.com/Z3X1sjv.png" width="480" height="720"/>
+      <img id="roundy2" src="http://i.imgur.com/qGoNw6n.png" width="480" height="720"/>
+      <img id="devin2" src="http://i.imgur.com/pa040mJ.png" width="480" height="720"/>
+      
+      <img id="trentsfightstick" src="http://i.imgur.com/e6i8iNZ.png" width="100" height="91"/>
+      <img id="craigsgreenscreen" src="http://i.imgur.com/rzcM2r8.png" width="100" height="91"/>
+      <img id="ericsloveforaquaman" src="http://i.imgur.com/36W5KTG.png" width="100" height="91"/>
+      <img id="reggiesmechanicalkeyboard" src="http://i.imgur.com/UqFGcMB.png" width="100" height="91"/>
+      <img id="tjswowauthenticator" src="http://i.imgur.com/wkWlpZo.png" width="100" height="91"/>
+      <img id="alexsgamebreakingbug" src="http://i.imgur.com/kbyDdat.png" width="100" height="91"/>
+      <img id="stevesinsulin" src="http://i.imgur.com/UoNq3wz.png" width="100" height="91"/>
+      <img id="zanesemployeediscount" src="http://i.imgur.com/QvtdyWN.png" width="100" height="91"/>
+      <img id="roundyscomicbookcollection" src="http://i.imgur.com/1a2oIKc.png" width="100" height="91"/>
+      <img id="devinsmotorcycle" src="http://i.imgur.com/IltAtvq.png" width="100" height="91"/>
+    </div>
+        
+    
+    
+
+</div>
+  </body>
+</html>
